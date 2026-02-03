@@ -325,6 +325,8 @@ CameraManager.openCamera()
 
 ### Framework handles everything behind the scenes
 
+--- 
+
 ## 6. Apps (top)
 
 These are what users see 👀
