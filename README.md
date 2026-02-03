@@ -205,3 +205,152 @@ That permission opens a **small door** in the sandbox.
 
 ---
 
+# Android Architecture (Bottom to Top – Simple Explanation)
+
+Apps
+────────────
+Android Framework
+────────────
+Android Runtime (ART)
+────────────
+HAL
+────────────
+Linux Kernel
+────────────
+Hardware
+
+
+Now let’s go **one layer at a time** 👇
+
+---
+
+## 1️⃣ Hardware (bottom)
+
+This is the actual physical parts:
+
+- CPU  
+- RAM  
+- Camera  
+- Display  
+- Speaker  
+- Sensors  
+
+📌 **Hardware cannot be used directly by apps.**
+
+---
+
+## 2️⃣ Linux Kernel
+
+This is the core brain 🧠
+
+It does:
+
+- Process scheduling (which app runs now)  
+- Memory management (RAM)  
+- Power management (battery)  
+- Device drivers (camera, display, USB)  
+
+👉 Same Linux idea, but **modified for mobile**.
+
+### Example drivers:
+- Camera driver  
+- Touchscreen driver  
+
+---
+
+## 3️⃣ HAL (Hardware Abstraction Layer)
+
+This is a translator 🗣️
+
+👉 **HAL hides hardware differences.**
+
+### Why needed?
+
+- Samsung camera ≠ Xiaomi camera  
+- But Android apps should work on both  
+
+So HAL says:
+
+> “Don’t worry, I’ll talk to hardware for you.”
+
+### Examples:
+- Camera HAL  
+- Audio HAL  
+- Sensor HAL  
+
+📌 Framework talks to **HAL**, not directly to drivers.
+
+---
+
+## 4️⃣ Android Runtime (ART)
+
+This is where apps actually run.
+
+ART does:
+
+- Runs app code  
+- Converts app code into machine code  
+- Garbage collection (cleans unused memory)  
+
+Apps are written in:
+
+- Java  
+- Kotlin  
+
+ART makes sure:
+
+✔ Apps run fast  
+✔ Apps don’t crash the system  
+
+---
+
+## 5️⃣ Android Framework
+
+This is the toolbox for app developers 🧰
+
+It provides ready-made services:
+
+- Camera service  
+- Location service  
+- Activity manager  
+- Window manager  
+- Notification manager  
+
+### Example:
+
+When an app uses camera:
+
+```java
+CameraManager.openCamera()
+
+### Framework handles everything behind the scenes
+
+## 6. Apps (top)
+
+These are what users see 👀
+
+Examples:
+
+Phone
+
+WhatsApp
+
+Chrome
+
+Camera
+
+Apps:
+
+Use Framework APIs
+
+❌ Never touch kernel or hardware directly
+
+Camera App
+ ↓
+Android Framework (Camera Service)
+ ↓
+HAL (Camera HAL)
+ ↓
+Linux Kernel (Camera Driver)
+ ↓
+Camera Hardware
