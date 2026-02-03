@@ -320,7 +320,7 @@ It provides ready-made services:
 
 When an app uses camera:
 
-```java
+
 CameraManager.openCamera()
 
 ### Framework handles everything behind the scenes
